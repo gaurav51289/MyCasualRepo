@@ -33,6 +33,39 @@ class LinkedList{
         return;
     }
     
+    public void insertAtPosition(int pos, int new_data){
+        Node new_node = new Node(new_data);
+        Node current, previous;
+        
+        int counter = 1;
+        
+        if(pos == 1){
+            
+            if(head != null){
+                new_node.next = head.next;
+            }
+            head = new_node;
+            return;
+        }
+        
+        current = head;
+        previous = null;
+        while(current.next != null && counter != pos){
+            previous = current;
+            current = current.next;
+            counter++;
+        }
+        
+        if(current.next == null && counter > pos - 1){
+            System.out.println("Position out of range.");
+            return;
+        }
+        new_node.next = current;
+        previous.next = new_node;
+        return;
+        
+    }
+    
     public void append(int new_data){
         Node new_node = new Node(new_data);
         
@@ -97,6 +130,8 @@ class LinkedList{
         ll1.printList();
         ll1.deleteData(102);
         ll1.deleteData(433);
+        ll1.printList();
+        ll1.insertAtPosition(7, 544);
         ll1.printList();
         
     }
